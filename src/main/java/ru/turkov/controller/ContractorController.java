@@ -1,35 +1,64 @@
 package ru.turkov.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ru.turkov.entity.Contractor;
-import ru.turkov.entity.ContractorInputForm;
 import ru.turkov.service.ContractorService;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ContractorController {
 
     @Autowired
     private ContractorService contractorService;
 
-    @RequestMapping(path = "/contractors", method = RequestMethod.GET)
-    public ModelAndView getAllContractors(){
+    @GetMapping(path = "/")
+    public String index() {
+        return "redirect:/contractor-list";
+    }
+//    @GetMapping(path = "/contractor-list")
+//    public String getAllContractors(Model model) {
+//        List<Contractor> contractorList = contractorService.findAll();
+//        model.addAttribute("contractorList", contractorList);
+//        return "contractor-list";
+//    }
+    @GetMapping(path = "/contractor-list")
+    public ModelAndView getAllContractors() {
         List<Contractor> contractorList = contractorService.findAll();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("contractors");
-        modelAndView.addObject("contractorList", contractorList);
-        return modelAndView;
+        return new ModelAndView("contractor-list", "contractorList", contractorList);
     }
 
-    @RequestMapping(path = "/contractors", method = RequestMethod.POST)
-    public String addContractor(ContractorInputForm contractorInputForm) {
-        Contractor newContractor = Contractor.from(contractorInputForm);
-        contractorService.save(newContractor);
-        return "redirect:/contractors";
+    @RequestMapping(path = "/contractor-create", method = RequestMethod.GET)
+    public ModelAndView createContractorForm(@ModelAttribute("contractor") Contractor contractor) {
+        return new ModelAndView("contractor-create", "contractor", contractor);
+    }
+
+    @RequestMapping(path = "/contractor-create", method = RequestMethod.POST)
+    public ModelAndView createContractor(@ModelAttribute("contractor") Contractor contractor) {
+        contractorService.save(contractor);
+        return new ModelAndView("redirect:/contractor-list", "contractor", contractor);
+    }
+
+    @GetMapping(path = "/contractor-update/{id}")
+    public String updateContractorForm(@PathVariable("id") Long id, Model model) {
+        Contractor contractor = contractorService.getById(id);
+        model.addAttribute("contractor", contractor);
+        return "contractor-update";
+    }
+
+    @PostMapping(path = "/contractor-update/{id}")
+    public String updateContractor(Contractor contractor) {
+        contractorService.save(contractor);
+        return "redirect:/contractor-list";
+    }
+
+    @GetMapping("/contractor-delete/{id}")
+    public String deleteContractor(@PathVariable("id") Long id) {
+        contractorService.deleteById(id);
+        return "redirect:/contractor-list";
     }
 }

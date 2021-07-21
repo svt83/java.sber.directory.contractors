@@ -17,7 +17,15 @@ public class ContractorService {
         return contractorRepository.findAll();
     }
 
-    public void save(Contractor contractor){
+    public Contractor getById(Long id) {
+        return contractorRepository.getById(id);
+    }
+
+    public void save(Contractor contractor) {
         contractorRepository.save(contractor);
+    }
+
+    public void deleteById(Long id) {
+        contractorRepository.deleteById(id);
     }
 }
