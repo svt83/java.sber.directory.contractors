@@ -38,11 +38,24 @@
 </head>
 <body>
 <div>
-    <p><a href="/contractor-create">Добавить контрагента</a></p>
-    <p><a href="/contractor-find-name">Поиск контрагента по наименованию</a></p>
-    <p><a href="/contractor-find-bik-account">Поиск контрагента по БИК и номеру счета</a></p>
-    <br>
-    <h2>Справочник контрагентов</h2>
+    <h2>Поиск контрагента по БИК и номеру счета</h2>
+</div>
+    <form method="post" action="/contractor-find-bik-account"><br>
+        <fieldset>
+            <legend>Введите реквизиты частично или полностью:</legend>
+            <label for="bik">БИК
+                <input type="text" id="bik" name="bik" placeholder="до 9 цифр" pattern="[0-9]*"
+                       minlength="0" maxlength="9" autocomplete="off"><br><br>
+            </label>
+            <label for="account">Счет
+                <input type="text" id="account" name="account" placeholder="до 20 цифр" pattern="[0-9]*"
+                       minlength="0" maxlength="20" size="21" autocomplete="off"><br><br>
+            </label>
+            <input type="submit" value="Найти контрагента">
+        </fieldset>
+    </form>
+<div>
+    <h2>Результат поиска:</h2>
     <table class="tg">
         <thead>
         <tr>
@@ -69,6 +82,7 @@
         </tbody>
         </c:forEach>
     </table>
+    <p><a href="/contractor-list">Назад к справочнику</a></p>
 </div>
 </body>
 </html>

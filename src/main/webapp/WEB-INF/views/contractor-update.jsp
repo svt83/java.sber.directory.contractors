@@ -9,8 +9,7 @@
     <div class="form-style-2-heading">
         Введите реквизиты контрагента
     </div>
-    <!--action="/contractor-update"-->
-    <form method="post"><%--@declare id="kpp"--%><%--@declare id="bik"--%><%--@declare id="account"--%><br>
+    <form method="post"><br>
         <label for="name">Наименование
             <input type="text" value="${contractor.name}" id="name" name="name" placeholder="до 20 символов"
                    minlength="1" maxlength="20" size="21" required><br><br>
@@ -20,19 +19,20 @@
                    pattern="\d{10}|\d{12}" minlength="10" maxlength="12" required><br><br>
         </label>
         <label for="kpp">КПП
-            <input type="text" value="${contractor.kpp}" name="kpp" placeholder="9 цифр"
+            <input type="text" value="${contractor.kpp}" id="kpp" name="kpp" placeholder="9 цифр"
                    pattern="[0-9]*" minlength="9" maxlength="9" required><br><br>
         </label>
         <label for="bik">БИК
-            <input type="text" value="${contractor.bik}" name="bik" placeholder="9 цифр"
+            <input type="text" value="${contractor.bik}" id="bik" name="bik" placeholder="9 цифр"
                    pattern="[0-9]*" minlength="9" maxlength="9" required><br><br>
         </label>
         <label for="account">Счет
-            <input type="text" value="${contractor.account}" name="account" placeholder="20 цифр"
-                   pattern="[0-9]*" minlength="20" maxlength="20" size="21" required autocomplete="off"><br><br>
+            <input type="text" value="${contractor.account}" id="account" name="account" placeholder="20 цифр"
+                   pattern="[0-9]*" minlength="20" maxlength="20" size="21" required><br><br>
         </label>
         <input type="submit" value="Внести изменения">
     </form>
+    <p><a href="/contractor-list">Назад к справочнику</a></p>
 </div>
 </body>
 </html>
