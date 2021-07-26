@@ -11,6 +11,7 @@ import javax.validation.constraints.Pattern;
  */
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "contractors")
