@@ -63,15 +63,15 @@
         </thead>
         <tbody>
         <c:forEach items="${contractorList}" var="contractor">
-            <tr>
-                <td>${contractor.name}</td>
-                <td>${contractor.inn}</td>
-                <td>${contractor.kpp}</td>
-                <td>${contractor.bik}</td>
-                <td>${contractor.account}</td>
-                <td><a href="contractor-update/${contractor.id}">Изменить</a></td>
-                <td><a href="contractor-delete/${contractor.id}">Удалить</a></td>
-            </tr>
+        <tr>
+            <td>${contractor.name}</td>
+            <td>${contractor.inn}</td>
+            <td>${contractor.kpp}</td>
+            <td>${contractor.bik}</td>
+            <td>${contractor.account}</td>
+            <td><a href="contractor-update/${contractor.id}">Изменить</a></td>
+            <td><a href="contractor-delete/${contractor.id}">Удалить</a></td>
+        </tr>
         </tbody>
         </c:forEach>
     </table>

@@ -1,0 +1,23 @@
+### Добавить контрагента
+POST http://localhost:8080/contractor-create
+Content-Type: application/x-www-form-urlencoded
+
+name=ИП+Петров+А.А.&inn=616608929424&kpp=123456789&bik=044525225&account=40702810938000000001
+
+
+### Добавить контрагента
+POST http://localhost:8080/contractor-create
+Content-Type: application/x-www-form-urlencoded
+
+name=ИП+Иванов+А.А.&inn=773576240338&kpp=770401001&bik=044525600&account=40702810400260004426
+
+
+### Добавить контрагента
+POST http://localhost:8080/contractor-create
+Content-Type: application/x-www-form-urlencoded
+
+name=ИП+Изыргина+ЕА&inn=540132550698&kpp=123456789&bik=044525631&account=40802810700000008286
+
+
+### Получить полный список контрагентов
+GET http://localhost:8080/contractor-list

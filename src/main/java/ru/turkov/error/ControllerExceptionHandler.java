@@ -17,7 +17,7 @@ public class ControllerExceptionHandler {
      * Исключение, которое будет выброшено, если контрагент с введенными реквизитами уже существует в БД
      *
      * @param exception - исключение EntityExistsException
-     * @return  - ошибка и http-статус
+     * @return - ошибка и http-статус
      */
     @ExceptionHandler(value = EntityExistsException.class)
     public ResponseEntity<Object> contractorExistException(EntityExistsException exception) {

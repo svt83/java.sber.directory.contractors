@@ -1,6 +1,7 @@
 package ru.turkov.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ru.turkov.entity.Contractor;
 import ru.turkov.repository.ContractorRepository;
@@ -16,6 +17,7 @@ import java.util.List;
  * ContractorRepository
  */
 @Service
+@Component
 public class ContractorService {
 
     @Autowired
@@ -43,12 +45,17 @@ public class ContractorService {
     /**
      * Процедура сохранения контрагента (для создания или модификации).
      *
+     * @param contractor - поступивший контрагент
      * @param contractor - контрагент
+     * @return - сохраненный контрагент
      */
     @Transactional
-    public void save(Contractor contractor) {
+    public Contractor save(Contractor contractor) {
         if (!InnValidService.checkInn(contractor.getInn())) {
             throw new IllegalArgumentException("ИНН указан неверно");
+        }
+        if (BicAccountValidService.checkKeyBicAccount(contractor.getBik(), contractor.getAccount())) {
+            throw new IllegalArgumentException("Номер счета или БИК указан неверно");
         }
         BicAccountValidService.checkKeyBicAccount(contractor.getBik(), contractor.getAccount());
         if (!contractorRepository.existsById(contractor.getId())) {
@@ -64,6 +71,7 @@ public class ContractorService {
                 existsByBikAndAccount(contractor);
             }
         }
+        return contractorRepository.save(contractor);
         contractorRepository.save(contractor);
     }
 
@@ -104,9 +112,10 @@ public class ContractorService {
      *
      * @param contractor - контрагент
      */
-    public void existsByName(Contractor contractor) {
+    public void existsByName(Contractor contractor) throws EntityExistsException {
         String name = contractor.getName();
         if (contractorRepository.existsByName(name)) {
+            System.out.println();
             throw new EntityExistsException("Контрагент с наименованием \"" + name
                     + "\" уже есть в справочнике");
         }
@@ -118,7 +127,7 @@ public class ContractorService {
      *
      * @param contractor - контрагент
      */
-    public void existsByBikAndAccount(Contractor contractor) {
+    public void existsByBikAndAccount(Contractor contractor) throws EntityExistsException {
         String bik = contractor.getBik();
         String account = contractor.getAccount();
         if (contractorRepository.existsByBikAndAccount(bik, account)) {

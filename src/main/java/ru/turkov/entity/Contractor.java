@@ -14,7 +14,6 @@ import javax.validation.constraints.Pattern;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "contractors")
 public class Contractor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -44,4 +43,3 @@ public class Contractor {
     @Pattern(regexp = "^[0-9]{20}", message = "Шаблон счета: 20 цифр")
     private String account;
 }
-

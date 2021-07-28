@@ -9,18 +9,12 @@ public class BicAccountValidService {
 
     /**
      * Внешний метод, который вызывается дял проверки соответствия БИК и номера счета.
-     * В случае некорректности реквизитов выбрасывается исключение.
      *
      * @param bik     - БИК
      * @param account - номер счета
      */
-    public static void checkKeyBicAccount(String bik, String account) {
-        if (bik.length() != 9 || account.length() != 20) {
-            throw new IllegalArgumentException("Номер счета или БИК указан неверно");
-        }
-        if (!controlNumber(bik, account)) {
-            throw new IllegalArgumentException("Номер счета или БИК указан неверно");
-        }
+    public static boolean checkKeyBicAccount(String bik, String account) {
+        return bik.length() != 9 || account.length() != 20 || !controlNumber(bik, account);
     }
 
     /**

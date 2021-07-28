@@ -40,20 +40,20 @@
 <div>
     <h2>Поиск контрагента по БИК и номеру счета</h2>
 </div>
-    <form method="post" action="/contractor-find-bik-account"><br>
-        <fieldset>
-            <legend>Введите реквизиты частично или полностью:</legend>
-            <label for="bik">БИК
-                <input type="text" id="bik" name="bik" placeholder="до 9 цифр" pattern="[0-9]*"
-                       minlength="0" maxlength="9" autocomplete="off"><br><br>
-            </label>
-            <label for="account">Счет
-                <input type="text" id="account" name="account" placeholder="до 20 цифр" pattern="[0-9]*"
-                       minlength="0" maxlength="20" size="21" autocomplete="off"><br><br>
-            </label>
-            <input type="submit" value="Найти контрагента">
-        </fieldset>
-    </form>
+<form method="post" action="/contractor-find-bik-account"><br>
+    <fieldset>
+        <legend>Введите реквизиты частично или полностью:</legend>
+        <label for="bik">БИК
+            <input type="text" id="bik" name="bik" placeholder="до 9 цифр" pattern="[0-9]*"
+                   minlength="0" maxlength="9" autocomplete="off"><br><br>
+        </label>
+        <label for="account">Счет
+            <input type="text" id="account" name="account" placeholder="до 20 цифр" pattern="[0-9]*"
+                   minlength="0" maxlength="20" size="21" autocomplete="off"><br><br>
+        </label>
+        <input type="submit" value="Найти контрагента">
+    </fieldset>
+</form>
 <div>
     <h2>Результат поиска:</h2>
     <table class="tg">
@@ -70,15 +70,15 @@
         </thead>
         <tbody>
         <c:forEach items="${contractorList}" var="contractor">
-            <tr>
-                <td>${contractor.name}</td>
-                <td>${contractor.inn}</td>
-                <td>${contractor.kpp}</td>
-                <td>${contractor.bik}</td>
-                <td>${contractor.account}</td>
-                <td><a href="contractor-update/${contractor.id}">Изменить</a></td>
-                <td><a href="contractor-delete/${contractor.id}">Удалить</a></td>
-            </tr>
+        <tr>
+            <td>${contractor.name}</td>
+            <td>${contractor.inn}</td>
+            <td>${contractor.kpp}</td>
+            <td>${contractor.bik}</td>
+            <td>${contractor.account}</td>
+            <td><a href="contractor-update/${contractor.id}">Изменить</a></td>
+            <td><a href="contractor-delete/${contractor.id}">Удалить</a></td>
+        </tr>
         </tbody>
         </c:forEach>
     </table>
