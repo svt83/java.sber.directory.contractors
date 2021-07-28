@@ -9,7 +9,6 @@
             border-spacing: 0;
             border-color: #ccc;
         }
-
         .tg td {
             font-family: Arial, sans-serif;
             font-size: 14px;
@@ -22,7 +21,6 @@
             color: #333;
             background-color: #fff;
         }
-
         .tg th {
             font-family: Arial, sans-serif;
             font-size: 14px;

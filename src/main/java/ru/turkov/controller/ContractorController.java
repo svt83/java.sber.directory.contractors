@@ -89,6 +89,7 @@ public class ContractorController {
         return new ModelAndView("redirect:/contractor-list", "contractor", contractor);
     }
 
+
     /**
      * Обработка запроса на удаление контрагента из таблицы БД
      *
@@ -107,6 +108,7 @@ public class ContractorController {
      * @param contractor - контрагент
      * @return - ModelAndView страницы поиска контрагента
      */
+
     @GetMapping(path = "/contractor-find-name")
     public ModelAndView contractorFindNameForm(Contractor contractor) {
         return new ModelAndView("contractor-find-name", "contractor", contractor);

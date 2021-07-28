@@ -46,6 +46,7 @@ public class ContractorService {
      * Процедура сохранения контрагента (для создания или модификации).
      *
      * @param contractor - поступивший контрагент
+     * @param contractor - контрагент
      * @return - сохраненный контрагент
      */
     @Transactional
@@ -56,6 +57,7 @@ public class ContractorService {
         if (BicAccountValidService.checkKeyBicAccount(contractor.getBik(), contractor.getAccount())) {
             throw new IllegalArgumentException("Номер счета или БИК указан неверно");
         }
+        BicAccountValidService.checkKeyBicAccount(contractor.getBik(), contractor.getAccount());
         if (!contractorRepository.existsById(contractor.getId())) {
             existsByName(contractor);
             existsByBikAndAccount(contractor);
@@ -70,6 +72,7 @@ public class ContractorService {
             }
         }
         return contractorRepository.save(contractor);
+        contractorRepository.save(contractor);
     }
 
     /**
